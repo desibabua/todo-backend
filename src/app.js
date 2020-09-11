@@ -1,36 +1,19 @@
 const express = require('express');
-const redis = require('redis');
-const {DbClient} = require('./dbClient');
 const handlers = require('./handlers');
-
-// const client = redis.createClient({
-  // url: 'redis://127.0.0.1:6379',
-  // db: 1,
-// });
-
-const getRedisClient = function () {
-  if (process.env.REDISCLOUD_URL) {
-    return redis.createClient(process.env.REDISCLOUD_URL, {
-      no_ready_check: true,
-    });
-  }
-  return redis.createClient();
-};
+const { db } = require('./getDatabase');
 
 const app = express();
 app.use(express.json());
 app.use(express.static('public'));
+
 app.use((req, res, next) => {
   console.log(req.url, req.method);
   next();
 });
+
 app.use(handlers.attachTodo);
 
-app.get('/', (req, res) => {
-  res.sendFile('index.html');
-});
-
-app.locals.db = new DbClient(getRedisClient());
+app.locals.db = db;
 
 app.get('/api/getAllToDos', handlers.getAllToDos);
 
