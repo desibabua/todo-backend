@@ -11,15 +11,18 @@ const client = redis.createClient({
 const app = express();
 app.use(express.json());
 app.use(express.static('public'));
-app.locals.db = new DbClient(client);
-
-
 app.use((req, res, next) => {
   console.log(req.url, req.method);
   next();
 });
-
 app.use(handlers.attachTodo);
+
+app.get('/', (req, res) => {
+  res.sendFile('index.html');
+});
+
+app.locals.db = new DbClient(client);
+
 app.get('/api/getAllToDos', handlers.getAllToDos);
 
 app.post('/api/resetTodo', handlers.resetTodo);
