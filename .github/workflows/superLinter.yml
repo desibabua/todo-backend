@@ -22,4 +22,6 @@ jobs:
         uses: github/super-linter@v3
         env:
           DEFAULT_BRANCH: main
+          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
+          # FILTER_REGEX_EXCLUDE: .*src/test.*
           GITHUB_TOKEN: ${{ secrets.SECRET_GITHUB_TOKEN }}

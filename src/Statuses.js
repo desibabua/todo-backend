@@ -11,4 +11,4 @@ const toggleStatus = {
 const getNextStatus = (status) => toggleStatus[status];
 const getDefaultStatus = () => UNDONE;
 
-module.exports = {getNextStatus, getDefaultStatus};
+module.exports = { getNextStatus, getDefaultStatus };
