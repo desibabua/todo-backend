@@ -19,6 +19,8 @@
     "quotes": ["error", "single"],
     "linebreak-style": ["error", "unix"],
     "semi": ["error", "always"],
+    "no-extra-semi": "warn",
+    "comma-dangle": ["error", "only-multiline"],
     "camelcase": "error",
     "class-methods-use-this": "warn",
     "array-bracket-spacing": ["error"],
@@ -85,6 +87,13 @@
         "no-magic-numbers": "off",
         "no-console": "off",
         "no-process-env": "off"
+      }
+    },
+    {
+      "files": ["src/getDatabase.js"],
+      "rules": {
+        "no-process-env": "off",
+        "camelcase": "off"
       }
     },
     {

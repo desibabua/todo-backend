@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 const handlers = require('./handlers');
 const { db } = require('./getDatabase');
 
@@ -6,10 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-app.use((req, res, next) => {
-  console.log(req.url, req.method);
-  next();
-});
+app.use(morgan('dev'));
 
 app.use(handlers.attachTodo);
 

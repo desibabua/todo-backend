@@ -6,7 +6,9 @@ class DbClient {
   getTodoDetails() {
     return new Promise((resolve, reject) => {
       this.client.get('todoDetails', (err, result) => {
-        if (err) reject(err);
+        if (err) {
+          reject(err);
+        }
         resolve(JSON.parse(result));
       });
     });
@@ -18,7 +20,9 @@ class DbClient {
         'todoDetails',
         JSON.stringify(todoDetails),
         (err, response) => {
-          if (err) reject(err);
+          if (err) {
+            reject(err);
+          }
           resolve(response);
         }
       );
